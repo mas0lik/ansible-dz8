@@ -17,7 +17,7 @@
 
     - name: Ensure MAVEN package is present
       apt:
-       name: git
+       name: maven
        state: present
 
     - name: Ensure Fusebox git repository cloned to host
@@ -27,9 +27,7 @@
        clone: yes
 
     - name: Build Webapp
-      shell: mvn -f /home/pkhramchenkov/boxfuse/pom.xml
-      args:
-       executable: /bin/bash
+      command: mvn -f /home/pkhramchenkov/boxfuse/pom.xml clean package
 
 - name: Prepare PRODUCTION environment
   hosts: production
