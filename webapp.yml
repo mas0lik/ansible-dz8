@@ -1,0 +1,68 @@
+---
+- name: Prepare STAGING environment
+  hosts: staging
+  become: yes
+
+  tasks:
+    - name: Ensure package repository is up to date
+      apt:
+       name: update
+       state: present
+
+    - name: Ensure default JDK package is present
+      apt:
+       name: default-jdk
+       state: present
+
+    - name: Ensure GIT package is present
+      apt:
+       name: git
+       state: present
+
+    - name: Ensure MAVEN package is present
+      apt:
+       name: git
+       state: present
+
+    - name: Ensure Fusebox git repository cloned to host
+      git:
+       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+       dest: /home/pkhramchenkov
+       clone: yes
+
+    - name: Build Webapp
+      shell: mvn package
+       args:
+        chdir: /home/pkhramchenkov/boxfuse-sample-java-war-hello/
+
+
+- name: Prepare PRODUCTION environment
+  hosts: production
+  become: yes
+
+  tasks:
+    - name: Ensure package repository is up to date
+      apt:
+       name: update
+       state: present
+
+    - name: Ensure TOMCAT package is present
+      apt:
+       name: tomcat
+       state: present
+
+    - name: Ensure TOMCAT service started
+      service:
+       name: tomcat
+       state: started
+
+    - name: Ensure Webapp is fetched from STAIGN environment
+      synchronize:
+         mode: pull
+         src: rsync://staging/home/pkhramchenkov/boxfuse-sample-java-war-hello/target/hello-1.0.war
+         dest: /var/lib/tomcat9/webapps
+         delegate_to: production
+    synchronize:
+      src: /home/pkhramchenkov/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      dest: /var/lib/tomcat9/webapps
+      delegate_to: staging
