@@ -32,9 +32,7 @@
 
     - name: Build Webapp
       shell: mvn package
-       args:
-       chdir: /home/pkhramchenkov/boxfuse-sample-java-war-hello/
-
+      command: mvn -f //home/pkhramchenkov/boxfuse-sample-java-war-hello/pom.xml clean package
 
 - name: Prepare PRODUCTION environment
   hosts: production
@@ -58,11 +56,6 @@
 
     - name: Ensure Webapp is fetched from STAIGN environment
       synchronize:
-         mode: pull
-         src: rsync://staging/home/pkhramchenkov/boxfuse-sample-java-war-hello/target/hello-1.0.war
-         dest: /var/lib/tomcat9/webapps
-         delegate_to: production
-    synchronize:
-      src: /home/pkhramchenkov/boxfuse-sample-java-war-hello/target/hello-1.0.war
-      dest: /var/lib/tomcat9/webapps
-      delegate_to: staging
+       src: /home/pkhramchenkov/boxfuse-sample-java-war-hello/target/hello-1.0.war
+       dest: /var/lib/tomcat9/webapps
+       delegate_to: staging
