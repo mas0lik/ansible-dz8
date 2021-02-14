@@ -27,7 +27,7 @@
        clone: yes
 
     - name: Build Webapp
-      command: mvn -f /home/pkhramchenkov/tmp/boxfuse-sample-java-war-hello/pom.xml clean package
+      command: mvn -f /home/pkhramchenkov/tmp/pom.xml clean package
 
 - name: Prepare PRODUCTION environment
   hosts: production
