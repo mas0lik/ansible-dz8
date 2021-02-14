@@ -25,6 +25,7 @@
        repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
        dest: /home/pkhramchenkov
        clone: yes
+       update: yes
 
     - name: Build Webapp
       command: mvn -f //home/pkhramchenkov/boxfuse-sample-java-war-hello/pom.xml clean package
