@@ -52,6 +52,6 @@
 
     - name: Ensure Webapp is fetched from STAGING environment
       synchronize:
-        mode: pull
-        src: rsync://35.224.117.14/home/pkhramchenkov/boxfuse/target/hello-1.0.war
-        dest: /var/lib/tomcat9/webapps
+       src: /home/pkhramchenkov/boxfuse/target/hello-1.0.war
+       dest: /var/lib/tomcat9/webapps
+      delegate_to: "{{ staging }}"
