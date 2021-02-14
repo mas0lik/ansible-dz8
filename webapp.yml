@@ -34,9 +34,9 @@
   become: yes
 
   tasks:
-    - name: Ensure default JDK package is present
+    - name: Ensure default JRE package is present
       apt:
-       name: default-jdk
+       name: default-jre
        state: present
        update_cache: yes
 
