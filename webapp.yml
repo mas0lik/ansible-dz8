@@ -50,8 +50,8 @@
        name: tomcat9
        state: started
 
-    - name: Ensure Webapp is fetched from STAIGN environment
+    - name: Ensure Webapp is fetched from STAGING environment
       synchronize:
        src: /home/pkhramchenkov/boxfuse/target/hello-1.0.war
        dest: /var/lib/tomcat9/webapps
-      delegate_to: 35.224.117.14
+      delegate_to: staging
