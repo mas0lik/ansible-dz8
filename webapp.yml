@@ -4,15 +4,11 @@
   become: yes
 
   tasks:
-    - name: Ensure package repository is up to date
-      apt:
-       name: update
-       state: present
-
     - name: Ensure default JDK package is present
       apt:
        name: default-jdk
        state: present
+       update_cache: yes
 
     - name: Ensure GIT package is present
       apt:
@@ -38,15 +34,11 @@
   become: yes
 
   tasks:
-    - name: Ensure package repository is up to date
-      apt:
-       name: update
-       state: present
-
     - name: Ensure TOMCAT package is present
       apt:
        name: tomcat
        state: present
+       update_cache: yes
 
     - name: Ensure TOMCAT service started
       service:
