@@ -35,10 +35,10 @@
 
   tasks:
     - name: Ensure default JDK package is present
-        apt:
-          name: default-jdk
-          state: present
-          update_cache: yes
+      apt:
+       name: default-jdk
+       state: present
+       update_cache: yes
 
     - name: Ensure TOMCAT package is present
       apt:
