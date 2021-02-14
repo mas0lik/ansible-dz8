@@ -28,6 +28,8 @@
 
     - name: Build Webapp
       shell: mvn -f /home/pkhramchenkov/boxfuse/pom.xml clean package
+        args:
+          executable: /bin/bash
 
 - name: Prepare PRODUCTION environment
   hosts: production
