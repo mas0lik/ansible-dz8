@@ -33,7 +33,7 @@
     - name: Build Webapp
       shell: mvn package
        args:
-        chdir: /home/pkhramchenkov/boxfuse-sample-java-war-hello/
+       chdir: /home/pkhramchenkov/boxfuse-sample-java-war-hello/
 
 
 - name: Prepare PRODUCTION environment
