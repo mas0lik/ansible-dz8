@@ -34,15 +34,20 @@
   become: yes
 
   tasks:
+    - name: Ensure default JDK package is present
+        apt:
+          name: default-jdk
+          state: present
+          update_cache: yes
+
     - name: Ensure TOMCAT package is present
       apt:
        name: tomcat9
        state: present
-       update_cache: yes
 
     - name: Ensure TOMCAT service started
       service:
-       name: tomcat
+       name: tomcat9
        state: started
 
     - name: Ensure Webapp is fetched from STAIGN environment
