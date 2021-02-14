@@ -23,11 +23,11 @@
     - name: Ensure Fusebox git repository cloned to host
       git:
        repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-       dest: /home/pkhramchenkov/tmp
+       dest: /home/pkhramchenkov/boxfuse
        clone: yes
 
     - name: Build Webapp
-      command: mvn -f /home/pkhramchenkov/tmp/pom.xml clean package
+      command: mvn -f /home/pkhramchenkov/boxfuse/pom.xml clean package
 
 - name: Prepare PRODUCTION environment
   hosts: production
@@ -47,6 +47,6 @@
 
     - name: Ensure Webapp is fetched from STAIGN environment
       synchronize:
-       src: /home/pkhramchenkov/tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+       src: /home/pkhramchenkov/boxfuse/boxfuse-sample-java-war-hello/target/hello-1.0.war
        dest: /var/lib/tomcat9/webapps
        delegate_to: staging
