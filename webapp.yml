@@ -54,4 +54,4 @@
       synchronize:
        src: /home/pkhramchenkov/boxfuse/target/hello-1.0.war
        dest: /var/lib/tomcat9/webapps
-      delegate_to: "{{ staging }}"
+      delegate_to: staging
